@@ -17,10 +17,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     private ApplicationRepository applicationRepository;
 
-    @Autowired
-    private CourseRepository courseRepository;
-
-
     @Override
     public List<ApplicationRequest> getAllApplications() {
         return applicationRepository.findAll();
@@ -56,23 +52,4 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.save(application);
     }
 
-    @Override
-    public Courses getCourse(Long id) {
-        return courseRepository.getOne(id);
-    }
-
-    @Override
-    public List<Courses> getAllCourses() {
-        return courseRepository.findAll();
-    }
-
-    @Override
-    public Courses addCourse(Courses course) {
-        return courseRepository.save(course);
-    }
-
-    @Override
-    public Courses saveCourse(Courses course) {
-        return courseRepository.save(course);
-    }
 }

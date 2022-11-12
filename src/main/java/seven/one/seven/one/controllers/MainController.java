@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import seven.one.seven.one.services.CourseService;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ public class MainController {
 
     @Autowired
     private ApplicationService applicationService;
+
+    @Autowired
+    private CourseService courseService;
 
     @GetMapping(value = "/")
     public String getAllApplications(Model model) {
@@ -28,7 +32,7 @@ public class MainController {
 
     @GetMapping(value = "/addform")
     public String getApplicationForm(Model model) {
-        List<Courses> courses = applicationService.getAllCourses();
+        List<Courses> courses = courseService.getAllCourses();
         model.addAttribute("courses", courses);
         return "applicationsform";
     }
@@ -38,7 +42,7 @@ public class MainController {
                                  @RequestParam(name = "courseId") Long id,
                                  @RequestParam(name = "commentary") String commentary,
                                  @RequestParam(name = "phone") String phone) {
-        applicationService.addApplication(new ApplicationRequest(null, userName, commentary, phone, false, applicationService.getCourse(id)));
+        applicationService.addApplication(new ApplicationRequest(null, userName, commentary, phone, false, courseService.getCourse(id)));
         return "redirect:/";
     }
 

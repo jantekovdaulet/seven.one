@@ -15,9 +15,4 @@ public interface ApplicationService {
     List<ApplicationRequest> getNewApplications();
     List<ApplicationRequest> getOldApplications();
 
-    Courses getCourse(Long id);
-    List<Courses> getAllCourses();
-    Courses addCourse(Courses course);
-    Courses saveCourse(Courses course);
-
 }
